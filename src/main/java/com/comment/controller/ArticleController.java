@@ -39,7 +39,7 @@ public class ArticleController {
 //        System.out.println(saved.toString());
         log.info(saved.toString());
 
-        return "redirect:/articles/"+saved.getId();
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}")
@@ -55,9 +55,31 @@ public class ArticleController {
     }
 
     @GetMapping("/articles")
-    public String index(Model model){
+    public String index(Model model) {
         List<Article> articles = (List<Article>) articleRepository.findAll();
         model.addAttribute("articles", articles);
         return "articles/index";
+    }
+
+    @GetMapping("/articles/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+        model.addAttribute("article", articleEntity);
+        return "articles/edit";
+    }
+
+    @PostMapping("/articles/update")
+    public String update(ArticleForm form) {
+        //1.Dto를 엔티티로 변환하기
+        Article articleEntity = form.toEntity();
+        log.info(articleEntity.toString());
+        //2.엔티티를 db에 저장하기
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+        if (target != null)
+            articleRepository.save(articleEntity);
+
+        //3.수정결과 페이지로 리다이렉트
+        log.info(form.toString());
+        return "redirect:/articles/" + articleEntity.getId();
     }
 }
