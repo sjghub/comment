@@ -1,9 +1,6 @@
 package com.comment.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @ToString
@@ -13,7 +10,7 @@ import lombok.*;
 @Entity
 public class Article {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // DB가 ID를 자동생성
     private Long id;
 
     @Column
