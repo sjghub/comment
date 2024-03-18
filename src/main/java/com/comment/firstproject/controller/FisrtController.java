@@ -1,4 +1,4 @@
-package com.comment.controller;
+package com.comment.firstproject.controller;
 
 
 import org.springframework.stereotype.Controller;

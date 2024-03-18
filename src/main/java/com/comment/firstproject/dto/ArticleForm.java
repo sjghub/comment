@@ -1,6 +1,6 @@
-package com.comment.dto;
+package com.comment.firstproject.dto;
 
-import com.comment.entity.Article;
+import com.comment.firstproject.entity.Article;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 

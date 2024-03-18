@@ -1,10 +1,8 @@
-package com.comment.controller;
+package com.comment.firstproject.controller;
 
-import com.comment.dto.ArticleForm;
-import com.comment.entity.Article;
-import com.comment.repository.ArticleRepository;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import com.comment.firstproject.dto.ArticleForm;
+import com.comment.firstproject.entity.Article;
+import com.comment.firstproject.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Controller
