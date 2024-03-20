@@ -26,12 +26,21 @@ public class CommentApiController {
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
-    @PostMapping("/api/articles/{articleId}/comment")
+    @PostMapping("/api/articles/{articleId}/comments")
     public ResponseEntity<CommentDto> create(@PathVariable Long articleId, @RequestBody CommentDto dto) {
         // 서비스에 위임
         CommentDto createDto = commentService.create(articleId, dto);
 
         //결과 반환
         return ResponseEntity.status(HttpStatus.OK).body(createDto);
+    }
+
+    @PatchMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> update(@PathVariable Long id,
+                                             @RequestBody CommentDto dto) {
+        // 서비스에 위임
+        CommentDto updatdDto = commentService.update(id, dto);
+        // 결과 반환
+        return ResponseEntity.status(HttpStatus.OK).body(updatdDto);
     }
 }
