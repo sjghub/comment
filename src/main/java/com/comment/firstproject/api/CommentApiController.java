@@ -43,4 +43,12 @@ public class CommentApiController {
         // 결과 반환
         return ResponseEntity.status(HttpStatus.OK).body(updatdDto);
     }
+
+    @DeleteMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> delete(@PathVariable Long id) {
+        //서비스에 위임
+        CommentDto deleteDto = commentService.delete(id);
+        //반환
+        return ResponseEntity.status(HttpStatus.OK).body(deleteDto);
+    }
 }
