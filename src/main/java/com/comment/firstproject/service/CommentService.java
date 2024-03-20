@@ -5,13 +5,14 @@ import com.comment.firstproject.entity.Article;
 import com.comment.firstproject.entity.Comment;
 import com.comment.firstproject.repository.ArticleRepository;
 import com.comment.firstproject.repository.CommentRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 public class CommentService {
     @Autowired
@@ -35,6 +36,8 @@ public class CommentService {
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new IllegalArgumentException("댓글 생성 실패, 댓글 대상 게시글이 없습니다"));
         //2. 댓글 엔티티 생성
+        log.info("article.getId()={}", article.getId());
+        log.info("dto.getArticleId() ={}",dto.getArticleId());
         Comment comment = Comment.createComment(dto, article);
         //3. 댓글 앤티티를 db에 저장
         Comment savedComment = commentRepository.save(comment);

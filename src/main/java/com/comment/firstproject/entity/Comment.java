@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Getter
 @ToString
 @AllArgsConstructor
@@ -30,8 +32,10 @@ public class Comment {
         //예외 발생
         if (dto.getId() != null)
             throw new IllegalArgumentException("댓글에 id가 없어야 됩니다");
-        if (dto.getArticleId() != article.getId())
+        if (dto.getArticleId() != article.getId()){
+            log.info("dto.getArticleId() = {},article.getId() = {}",dto.getArticleId(),article.getId());
             throw new IllegalArgumentException("게시글의 id가 잘못되었씁니다.");
+        }
 
         // 엔티티 생성 및 반환
         return new Comment(

@@ -4,6 +4,7 @@ package com.comment.firstproject.api;
 import com.comment.firstproject.dto.CommentDto;
 import com.comment.firstproject.entity.Comment;
 import com.comment.firstproject.service.CommentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Slf4j
 @RestController
 public class CommentApiController {
     @Autowired
@@ -29,6 +30,8 @@ public class CommentApiController {
     @PostMapping("/api/articles/{articleId}/comments")
     public ResponseEntity<CommentDto> create(@PathVariable Long articleId, @RequestBody CommentDto dto) {
         // 서비스에 위임
+        log.info("dto.toString() = {}",dto.toString());
+        log.info("articleId = {}",articleId);
         CommentDto createDto = commentService.create(articleId, dto);
 
         //결과 반환
